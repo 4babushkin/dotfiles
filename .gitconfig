@@ -1,0 +1,23 @@
+[user]
+    name = Vladimir Babushkin
+    email = 4babushkin@gmail.com
+
+[color]
+    diff = auto
+    status = auto
+    ui = auto
+
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold # line info
+    old = red # deletions
+    new = green # additions
+
+[alias]
+    pm= "!git push -u origin master"
+    c = commit -m
+    a = add
+    cob = checkout -b
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    st = status
+    co = checkout
