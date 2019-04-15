@@ -7,8 +7,12 @@ apt-get --assume-yes install vim exuberant-ctags zsh git
 
 # Установка oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+# тема
 git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
 
+#плагин 256
+sh -c "$(cd ~/.oh-my-zsh/custom/plugins && git clone https://github.com/chrissicool/zsh-256color)"
 
 echo "Установка Vundle for vim..."
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
