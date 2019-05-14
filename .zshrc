@@ -4,7 +4,6 @@
 # Path to your oh-my-zsh installation.
 USER=$(whoami)
 
-
   export ZSH="/home/$USER/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
@@ -89,7 +88,7 @@ compinit
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-256color git golang github ubuntu)
+plugins=(git golang github ubuntu docker docker-compose)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -129,3 +128,7 @@ alias ...="cd ../.."
 alias l='ls -la'
 
 
+export ANSIBLE_NOCOWS=1
+
+# added by travis gem
+[ -f /home/bobah/.travis/travis.sh ] && source /home/bobah/.travis/travis.sh
