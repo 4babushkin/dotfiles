@@ -2,10 +2,9 @@
 # .make.sh 
 # This script creates symlinks from ~/ to dotfiles dir
 
-#echo "Установка vim..."
-#apt-get --assume-yes install vim exuberant-ctags zsh git
 
-sudo apt-get install zsh mc htop jq vim -y
+
+sudo apt-get --assume-yes install zsh mc htop jq curl git
 # Установка oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
@@ -14,6 +13,10 @@ git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/theme
 
 #плагин 256
 sh -c "$(cd ~/.oh-my-zsh/custom/plugins && git clone https://github.com/chrissicool/zsh-256color)"
+
+
+#echo "Установка vim..."
+#apt-get install vim exuberant-ctags 
 
 #echo "Установка Vundle for vim..."
 #git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
