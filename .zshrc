@@ -86,7 +86,7 @@ compinit
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-navigation-tools sudo git docker docker-compose kubectl terraform)
+plugins=(zsh-syntax-highlighting zsh-navigation-tools sudo git docker docker-compose kubectl terraform)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -132,3 +132,4 @@ export ANSIBLE_NOCOWS=1
 [ -f /home/$USER/.travis/travis.sh ] && source /home/$USER/.travis/travis.sh
 
 export PATH=${HOME}/bin:${PATH}
+
