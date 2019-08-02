@@ -2,9 +2,10 @@
 # .make.sh 
 # This script creates symlinks from ~/ to dotfiles dir
 
-echo "Установка vim..."
-apt-get --assume-yes install vim exuberant-ctags zsh git
+#echo "Установка vim..."
+#apt-get --assume-yes install vim exuberant-ctags zsh git
 
+sudo apt-get install zsh mc htop jq vim -y
 # Установка oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
@@ -14,9 +15,9 @@ git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/theme
 #плагин 256
 sh -c "$(cd ~/.oh-my-zsh/custom/plugins && git clone https://github.com/chrissicool/zsh-256color)"
 
-echo "Установка Vundle for vim..."
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-vim +PluginInstall +qall
+#echo "Установка Vundle for vim..."
+#git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+#vim +PluginInstall +qall
 
 dir=~/dotfiles
 olddir=~/dotfiles_old
@@ -46,7 +47,9 @@ case "$item" in
 
     ### установка docker
     curl -fsSL https://get.docker.com -o get-docker.sh
-    sh get-docker.sh
+    sudo sh get-docker.sh
+
+    sudo usermod -aG docker ${USER}
 
     ### docker machine install 
     base=https://github.com/docker/machine/releases/download/v0.16.0 &&
@@ -56,11 +59,24 @@ case "$item" in
     ### установка docker-compose
     sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
         ;;
-    n|N) echo "Ввели «n», завершаем..."
-        exit 0
+    n|N) echo "Ввели «n» ..."
+        
         ;;
     *) echo "Ничего не ввели. Выполняем действие по умолчанию..."
         ;;
 esac
 
+echo -n "Install Terraform & Packer ? (y/n) "
+read item
+case "$item" in
+    y|Y) echo "Ввели «y», продолжаем..."
+    ### установка Terraforms
+    utils/terraform-install.sh && utils/packer-install.sh
+        ;;
+    n|N) echo "Ввели «n» ..."
+        
+        ;;
+    *) echo "Ничего не ввели. Выполняем действие по умолчанию..."
+        ;;
+esac
 

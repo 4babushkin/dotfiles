@@ -10,15 +10,15 @@ USER=$(whoami)
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-#ZSH_THEME="robbyrussell"
-#
-#ZSH_THEME="agnoster"
-#ZSH_THEME="pygmalion"
+
+
+#ZSH_THEME="blinks"
+#ZSH_THEME="bureau"
+ZSH_THEME="bira"
  
 ZSH_THEME="powerlevel9k/powerlevel9k"
 POWERLEVEL9K_MODE="nerdfont-complete"
-
-#POWERLEVEL9K_DISABLE_RPROMPT=true
+POWERLEVEL9K_DISABLE_RPROMPT=true
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="▶ "
 POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
@@ -131,4 +131,6 @@ alias l='ls -la'
 export ANSIBLE_NOCOWS=1
 
 # added by travis gem
-[ -f /home/bobah/.travis/travis.sh ] && source /home/bobah/.travis/travis.sh
+[ -f /home/$USER/.travis/travis.sh ] && source /home/$USER/.travis/travis.sh
+
+export PATH=${HOME}/bin:${PATH}
