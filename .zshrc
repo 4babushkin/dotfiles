@@ -86,7 +86,7 @@ compinit
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git golang github ubuntu docker docker-compose)
+plugins=(zsh-navigation-tools sudo git docker docker-compose kubectl terraform)
 
 source $ZSH/oh-my-zsh.sh
 
