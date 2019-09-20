@@ -19,12 +19,15 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
 
-#echo "Установка vim..."
-#apt-get install vim exuberant-ctags 
+echo "Установка vim..."
+apt-get install vim exuberant-ctags 
 
-#echo "Установка Vundle for vim..."
-#git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-#vim +PluginInstall +qall
+echo "Установка Vundle for vim..."
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+vim +PluginInstall +qall
+
+cd ~/.vim/bundle/YouCompleteMe
+./install.py --clang-completer
 
 dir=~/dotfiles
 olddir=~/dotfiles_old
