@@ -4,13 +4,12 @@
 # Path to your oh-my-zsh installation.
 USER=$(whoami)
 
-  export ZSH="/home/$USER/.oh-my-zsh"
+export ZSH="/home/$USER/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-
 
 #ZSH_THEME="blinks"
 #ZSH_THEME="bureau"
@@ -87,7 +86,7 @@ compinit
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-autosuggestions command-not-found colored-man-pages history-substring-search zsh-syntax-highlighting zsh-navigation-tools sudo git docker docker-compose kubectl terraform)
+plugins=(docker docker-compose zsh-autosuggestions command-not-found colored-man-pages history-substring-search zsh-syntax-highlighting zsh-navigation-tools sudo git kubectl terraform)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -134,3 +133,4 @@ export ANSIBLE_NOCOWS=1
 
 export PATH=${HOME}/bin:${PATH}
 
+autoload -Uz compinit; compinit
