@@ -86,7 +86,7 @@ compinit
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(docker docker-compose zsh-autosuggestions command-not-found colored-man-pages history-substring-search zsh-syntax-highlighting zsh-navigation-tools sudo git kubectl terraform)
+plugins=(vagrant docker docker-compose zsh-autosuggestions command-not-found colored-man-pages history-substring-search zsh-syntax-highlighting zsh-navigation-tools sudo git kubectl terraform)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -125,6 +125,8 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias l='ls -la'
 
+alias pbcopy='xclip -sel clip'
+alias pbpaste='xclip -sel clip -o'
 
 export ANSIBLE_NOCOWS=1
 
@@ -135,7 +137,7 @@ export PATH=${HOME}/bin:${PATH}
 
 autoload -Uz compinit; compinit
 
-export PATH="$HOME/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+#export PATH="$HOME/.pyenv/bin:$PATH"
+#eval "$(pyenv init -)"
+#eval "$(pyenv virtualenv-init -)"
 
