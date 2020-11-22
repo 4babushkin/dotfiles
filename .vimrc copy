@@ -1,30 +1,61 @@
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-" Install vim-plug if not found
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-endif
+"// let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
 
-
-
-call plug#begin('~/.vim/bundle') "Начать искать плагины в этой директории
-
-Plug 'damage220/solas.vim' 
-Plug 'vim-airline/vim-airline'
-Plug 'jpalardy/vim-slime'
-Plug 'ryanoasis/vim-devicons'
-" Plug 'valloric/youcompleteme'
-Plug 'scrooloose/syntastic'
+"// common
+Plugin 'scrooloose/nerdtree'
+"// Plugin 'valloric/youcompleteme'
+Plugin 'xolox/vim-easytags'
+Plugin 'majutsushi/tagbar'
+Plugin 'tpope/vim-fugitive'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'scrooloose/nerdcommenter'
 Plugin 'matze/vim-move'
+Plugin 'raimondi/delimitmate'
+Plugin 'mattn/emmet-vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-surround'
+Plugin 'sirver/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'xolox/vim-session'
+Plugin 'xolox/vim-misc'
+Plugin 'SyntaxAttr.vim'
+Plugin 'dyng/ctrlsf.vim'
+Plugin 'rking/ag.vim'
+Plugin 'godlygeek/tabular'
 
-" Plug 'scrooloose/nerdtree'
+"// php
+Plugin 'stanangeloff/php.vim'
+Plugin 'sumpygump/php-documentor-vim'
+Plugin 'arnaud-lb/vim-php-namespace'
 
-call plug#end() "Перестать это делать
+"// javascript
+Plugin 'pangloss/vim-javascript'
 
-" Установка добавленных плагинов
-if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
+"// html
+Plugin 'othree/html5.vim'
+
+"// twig
+Plugin 'evidens/vim-twig'
+
+"// css
+Plugin 'mtscout6/vim-tagbar-css'
+
+"// colors
+Plugin 'damage220/solas.vim'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'mhartington/oceanic-next'
+Plugin 'ErichDonGubler/vim-sublime-monokai'
+
+
+call vundle#end()
 
 
 set nocompatible
@@ -34,15 +65,13 @@ filetype plugin indent on
 filetype plugin indent on
 
 
-
 " выбираем цветовую схему
-" colorscheme solarized
-colorscheme solas
+"" colorscheme solas
+colorscheme sublimemonokai
 " Использовать больше цветов в терминале
-
+"set t_Co=256
 " Задаем фон терминала, что влияет на подсветку
 set background=dark
-
 
 
 " обязательно!
@@ -52,7 +81,7 @@ set linebreak
 " Выключаем поддержку мыши при работе в терминале (для включения нужно устaновить mouse=a)
 set mouse=a
 " Включаем подсветку синтаксиса
-syntax enable
+syntax on
 " Включаем отображение выполняемой в данный момент команды в правом нижнем углу экрана
 set showcmd
 " Показывать строку с позицией курсора
@@ -63,7 +92,7 @@ set showmatch
 set showtabline=2
 " Показывать строку статуса всегда
 set laststatus=2
-set softtabstop=2
+set softtabstop=4
 " Показывать имя буфера в заголовке терминала
 set title
 " Формат заголовка
@@ -85,7 +114,7 @@ set autoindent
 " Размер табуляции
 set tabstop=2
 " Размер сдвига при нажатии на клавиши «<" и «>"
-set shiftwidth=2
+set shiftwidth=4
 " Включить подсветку невидимых символов
 "set list
 " всегда показывать строку статуса
@@ -113,12 +142,11 @@ set splitright
 " set foldmethod=syntax
 " Опции авто-дополнения
 set completeopt=longest,menuone
-
 "-=Поиск=-
 " Включаем подсветку выражения, которое ищется в тексте
 set hlsearch
 " Отключение подсветки найденных выражений
-" set nohlsearch
+set nohlsearch
 " При поиске перескакивать на найденный текст в процессе набора строки (инкрементальный поиск)
 set incsearch
 " Если искомое выражения содержит символы в верхнем регистре — ищет с учётом регистра, иначе — без учёта
@@ -137,7 +165,6 @@ set history=128
 set undolevels=1000
 " предлагать авто-дополнение на основе уже введённого регистра
 set infercase
-
 "-=Swap и backup=-
 " Отключаем создание swap файлов
 set noswapfile
@@ -152,7 +179,6 @@ if has("unix")
 " использовать английскую локаль на любой системе
 language en_US.UTF-8
 endif
-
 " Кодировка по умолчанию
 set encoding=utf-8
 set termencoding=utf-8
@@ -167,36 +193,30 @@ set wildmenu
 set wcm=<TAB>
 " вывести весь список сразу доступных вариантов, а затем перебором
 set wildmode=list:longest,full
-
 " Переключение кодировки чтения файла по <F7>
 menu Encoding.Read.UTF8<TAB><F7> :e ++enc=utf8 <CR>
 menu Encoding.Read.KOI8-R<TAB><F7> :e ++enc=koi8-r<CR>
 menu Encoding.Read.CP1251<TAB><F7> :e ++enc=cp1251<CR>
 menu Encoding.Read.CP866<TAB><F7> :e ++enc=cp866<CR>
 map <F7> :emenu Encoding.Read.<TAB>
-
 " Переключение кодировки сохранения файла по <F8>
 menu Encoding.Write.UTF8<TAB><F8> :set fenc=utf8 <CR>
 menu Encoding.Write.KOI8-R<TAB><F8> :set fenc=koi8-r<CR>
 menu Encoding.Write.CP1251<TAB><F8> :set fenc=cp1251<CR>
 menu Encoding.Write.CP866<TAB><F8> :set fenc=cp866<CR>
 map <F8> :emenu Encoding.Write.
-
 " По умолчанию проверка орфографии выключена (setlocal nospell). Меню для управления этими настройками по <F9>
 menu SpellLang.nospell<TAB><F9>	:setlocal nospell <CR>
 menu SpellLang.RU<TAB><F9>	:setlocal spell spelllang=ru_yo <CR>
 menu SpellLang.EN<TAB><F9>	:setlocal spell spelllang=en_us <CR>
-
 " также возможна одновременная проверка многоязычного документа
 menu SpellLang.RU_EN<TAB><F9>	:setlocal spell spelllang=ru_ru,en_us <CR>
 " словари при загрузке с сайта ftp://ftp.vim.org/pub/vim/runtime/spell/ будут ложиться в ~/.vim/spell, что редактор сам предложит при первой проверке орфографии
 map <F9> :emenu SpellLang.<TAB>
-
 " Сохранить файл по <F2>
 nmap <F2> :w!<CR>
 imap <F2> <Esc>:w!<CR>
 vmap <F2> <Esc>:w!<CR>
-
 " F3 - рекурсивный поиск по файлам (плагин grep.vim)
 nnoremap <silent> <F3> :Rgrep<cr>
 " Shift-F<F3> - добавление найденного к прошлым результатам поиска
@@ -248,7 +268,6 @@ endfor
 " nerdtree
 let NERDTreeAutoDeleteBuffer = 1
 
-
 " move
 let g:move_key_modifier = 'C'
 
@@ -257,9 +276,11 @@ let g:ycm_server_python_interpreter='python'
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_key_list_select_completion = ['<Down>']
 
+" emmet
+let g:user_emmet_expandabbr_key = '<C-e>'
 
 " airline
-" let g:airline_theme='solarized'
+let g:airline_theme='solarized'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_min_count = 0
@@ -288,6 +309,11 @@ let g:session_autosave_periodic = 5
 let g:session_autosave_silent = 1
 let g:session_default_to_last = 1
 
+" NERDCommenter
+let g:NERDSpaceDelims = 1
+
+" html
+au BufNewFile,BufRead *.tpl set filetype=html syntax=php
 
 " syntastic
 let g:syntastic_always_populate_loc_list = 1
@@ -295,4 +321,55 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+" tagbar
+let g:tagbar_sort = 0
+let g:tagbar_width = 35
+let g:tagbar_iconchars = ['+', '-']
+let g:tagbar_map_close = '<C-m>'
+let g:tagbar_type_php = {
+  \'ctagstype': 'php',
+  \'kinds': [
+    \'i:interfaces',
+    \'c:classes',
+    \'d:constants',
+    \'f:functions'
+  \]
+\}
+let g:tagbar_type_javascript = {
+\'ctagstype':'JavaScript',
+  \'kinds' : [
+    \'f:functions',
+    \'c:classes',
+    \'m:methods',
+    \'p:properties'
+  \]
+\}
+
+" delimitmate
+let delimitMate_expand_cr = 1
+let delimitMate_expand_space = 1
+au FileType vim,html let b:delimitMate_matchpairs = "(:),[:],{:},<:>,>:<"
+
+" NERDTree
+ let g:NERDTreeDirArrowExpandable = '+'
+ let g:NERDTreeDirArrowCollapsible = '-'
+
+" ctrlp
+let g:ctrlp_by_filename = 1
+let g:ctrlp_working_path_mode = 'wr'
+let g:ctrlp_map = ''
+let g:ctrlp_buftag_types = {
+  \'php': '--php-kinds=icdf'
+\}
+
+" ctrlsf
+let g:ctrlsf_position = 'right'
+
+" easytags
+let g:easytags_file = './tags'
+let g:easytags_auto_highlight = 0
+let g:easytags_events = ['BufWritePost']
+let g:easytags_async = 1
+
+let g:go_version_warning = 0
 
