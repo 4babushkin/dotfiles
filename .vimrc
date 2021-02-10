@@ -15,7 +15,7 @@ Plug 'jpalardy/vim-slime'
 Plug 'ryanoasis/vim-devicons'
 " Plug 'valloric/youcompleteme'
 Plug 'scrooloose/syntastic'
-Plugin 'matze/vim-move'
+Plug 'matze/vim-move'
 
 " Plug 'scrooloose/nerdtree'
 
