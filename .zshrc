@@ -13,9 +13,9 @@ export ZSH="/home/$USER/.oh-my-zsh"
 
 #ZSH_THEME="blinks"
 #ZSH_THEME="bureau"
-#ZSH_THEME="bira"
+ZSH_THEME="bira"
 
- ZSH_THEME="powerlevel9k/powerlevel9k"
+ #ZSH_THEME="powerlevel9k/powerlevel9k"
  POWERLEVEL9K_MODE="nerdfont-complete"
  POWERLEVEL9K_DISABLE_RPROMPT=true
  POWERLEVEL9K_PROMPT_ON_NEWLINE=true
@@ -86,7 +86,7 @@ compinit
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(pip pipenv vagrant docker docker-compose zsh-autosuggestions command-not-found colored-man-pages history-substring-search zsh-syntax-highlighting zsh-navigation-tools sudo git kubectl terraform)
+plugins=(ssh-agent pip pipenv vagrant docker docker-compose zsh-autosuggestions command-not-found colored-man-pages history-substring-search zsh-syntax-highlighting zsh-navigation-tools sudo git kubectl terraform poetry)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -129,15 +129,32 @@ alias pbcopy='xclip -sel clip'
 alias pbpaste='xclip -sel clip -o'
 
 export ANSIBLE_NOCOWS=1
+export CDPATH="~:$HOME/BROOMA:/etc"
 
 # added by travis gem
 [ -f /home/$USER/.travis/travis.sh ] && source /home/$USER/.travis/travis.sh
 
 export PATH=${HOME}/bin:${PATH}
 
+export PATH=${HOME}/BROOMA/ansible/api/cloudflare:${PATH}
+
 autoload -Uz compinit; compinit
 
-#export PATH="$HOME/.pyenv/bin:$PATH"
-#eval "$(pyenv init -)"
-#eval "$(pyenv virtualenv-init -)"
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
+#export PATH=$PATH:/usr/local/go/bin
+#export GOPATH=$HOME/my_projects/go
+
+for possiblekey in ${HOME}/.ssh/*; do
+     if grep -q PRIVATE "$possiblekey"; then
+         ssh-add "$possiblekey"
+     fi
+done
+
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /home/bobah/bin/terraform terraform
+
+export PATH="$HOME/.poetry/bin:$PATH"

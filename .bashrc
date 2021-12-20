@@ -126,3 +126,5 @@ export ANSIBLE_NOCOWS=1
 # added by travis gem
 [ -f /home/bobah/.travis/travis.sh ] && source /home/bobah/.travis/travis.sh
 export PATH=${HOME}/bin:${PATH}
+
+complete -C /home/bobah/bin/terraform terraform
