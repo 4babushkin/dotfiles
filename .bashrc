@@ -128,3 +128,4 @@ export ANSIBLE_NOCOWS=1
 export PATH=${HOME}/bin:${PATH}
 
 complete -C /home/bobah/bin/terraform terraform
+export PATH="$PATH:/usr/bin/Postman"
